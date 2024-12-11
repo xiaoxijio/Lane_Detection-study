@@ -109,7 +109,7 @@ class LaneClsDataset(torch.utils.data.Dataset):
     def _get_index(self, label):
         w, h = label.size
 
-        if h != 288:  # 后续会给数据resize为288 所以这里先对标签进行一个resize
+        if h != 288:  # 因为先验值是基于高为288搞的，所以要将先验值映射到原图高度上
             scale_f = lambda x: int((x * 1.0 / 288) * h)
             sample_tmp = list(map(scale_f, self.row_anchor))  # 相当于一个先验值 18个车道点
 
